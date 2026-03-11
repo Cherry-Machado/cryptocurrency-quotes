@@ -4,8 +4,11 @@ Class CSE499: Senior Project from BYU-Idaho.
 
 Team Members: 
 
- 🤵 Cherry Wilmer Machado Carreno. 
+ 🤵 Cherry Wilmer Machado Carreno.
+    My Quote: "Be strong and of a good courage" Joshua 1:6.
+
  🤵 Bitner Gordon Torres.
+ 
  🤵 Racheal Katono.
 
 Our Project Proposal: A Minimalist, REST-Driven Hub for cryptocurrency-quotes.
