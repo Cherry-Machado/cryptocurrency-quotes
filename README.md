@@ -17,6 +17,15 @@ As our Senior Project, we are proposing to build a high-performance web applicat
 
 We intend to focus on a 'Minimalist-First' architecture. Instead of building just another exchange, We will create a professional-grade interface that fetches and displays live 'Cryptocurrency Quotes' with surgical precision.
 
+# Sprint 1: API Research & Integration (Lead: Racheal Katono) 
+
+# 1. Documentation Analysis Verified the CoinDesk BPI (Bitcoin Price Index) as our primary data source for institutional-grade market pricing. Mapped the current API endpoints to ensure seamless data flow into the React frontend. Analyzed rate limits and documentation to ensure the application remains within "reasonable use" parameters. 
+
+# 2. Supported Symbols & Assets Confirmed primary support for Bitcoin (BTC) as the base asset. Documented supported fiat currency codes: USD, EUR, and GBP. 
+
+# 3. Technical Prototype Developed a functional fetch request prototype to verify real-time connectivity to the CoinDesk API. Validated the response structure to prepare for Zod type definitions and state management integration. 
+
+# 4. Current Blockers Investigating a secondary API source to fetch real-time coin logos, as the current CoinDesk endpoint provides numerical price data only. 
 
 [Expense and Budget Control System Deployment]()
 
