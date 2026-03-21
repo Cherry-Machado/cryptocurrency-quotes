@@ -49,8 +49,11 @@ We intend to focus on a 'Minimalist-First' architecture. Instead of building jus
   - Form Background: #EFF6FF;  # soft blue-tinted panels
 
 # Wireframe
+  Background:
 ![Background](Images/Background.png)
+  Coin to Crypto Menu:
 ![Coin to Crypto Menu](Images/wireframe-menu.jpg)
+  Coin to Crypto Quote:
 ![Coin to Crypto Quote](Images/wireframe-quote.jpg)
 
 # Development Environment
