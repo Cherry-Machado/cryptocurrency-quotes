@@ -31,6 +31,28 @@ We intend to focus on a 'Minimalist-First' architecture. Instead of building jus
 
 [Expense and Budget Control System Demo Video]()
 
+# Color Pallete
+  -  white: #FFF;
+  -  primary: #61ECBC;
+  -  black: #182339;
+  -  Form Background #ECEBEB;
+
+# Color Pallete for "Signal over Noise" 
+  - white: #FFFFFF;
+  - primary: #3B82F6;          # clean, modern blue
+  - secondary: #60A5FA;        # lighter supporting blue
+  - accent: #93C5FD;           # soft highlight blue
+  - black: #0F172A;            # deep navy for text
+  - text-secondary: #475569;   # muted text
+  - border: #E2E8F0;           # subtle separators
+  - background: #F8FAFC;       # fallback / base layer
+  - Form Background: #EFF6FF;  # soft blue-tinted panels
+
+# Wireframe
+![Background](Images/Background.png)
+![Coin to Crypto Menu](Images/wireframe-menu.jpg)
+![Coin to Crypto Quote](Images/wireframe-quote.jpg)
+
 # Development Environment
 
 ✅ Visual Studio Code
