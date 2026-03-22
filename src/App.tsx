@@ -2,7 +2,16 @@ function App() {
 
   return (
     <>
-      <h1>Cryptocurrency Quotes</h1>
+      <div className="container">
+        <h1 className="app-title">
+          <span>Cryptocurrency</span> Quotes
+        </h1>
+
+        <div className="content">
+
+        </div>
+      </div>
+      
     </>
   )
 }
