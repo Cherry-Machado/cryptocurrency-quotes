@@ -2,8 +2,6 @@
 
 Class CSE499: Senior Project from BYU-Idaho.
 
-[Just click here to Criptocurrency Quotes Project Deployment](https://cryptocurrency-quotes.netlify.app/)
-
 Team Members: 
 
  🤵 Cherry Wilmer Machado Carreno.
@@ -18,6 +16,8 @@ Our Project Proposal: A Minimalist, REST-Driven Hub for cryptocurrency-quotes.
 As our Senior Project, we are proposing to build a high-performance web application designed to solve the problem of information fatigue. By leveraging the CoinDesk Data API — widely recognized as an institutional-grade authority for market pricing — We will develop a streamlined, RESTful dashboard that serves as a single source of truth for the most common digital assets.
 
 We intend to focus on a 'Minimalist-First' architecture. Instead of building just another exchange, We will create a professional-grade interface that fetches and displays live 'Cryptocurrency Quotes' with surgical precision.
+
+[Just click here to Criptocurrency Quotes Project Deployment](https://cryptocurrency-quotes.netlify.app/)
 
 # Sprint 1: API Research & Integration (Lead: Racheal Katono) 
 
