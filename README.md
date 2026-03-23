@@ -2,9 +2,7 @@
 
 Class CSE499: Senior Project from BYU-Idaho.
 
-[Criptocurrency Quotes Project Deployment](https://cryptocurrency-quotes.netlify.app/)
-
-[Criptocurrency Quotes Project Demo Video]()
+[Just click here to Criptocurrency Quotes Project Deployment](https://cryptocurrency-quotes.netlify.app/)
 
 Team Members: 
 
