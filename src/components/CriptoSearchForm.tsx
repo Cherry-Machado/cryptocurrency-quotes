@@ -1,5 +1,6 @@
 import { currencies } from "../data";
 
+// A form component for searching cryptocurrency quotes based on selected currency and cryptocurrency.
 export default function CriptoSearchForm() {
   return (
     <form className="form">
@@ -10,6 +11,7 @@ export default function CriptoSearchForm() {
                 name="currency" 
             >
                 <option value="">-- Choose a Currency --</option>
+                {/* Dynamically populate the currency options from the imported currencies data */}
                 {currencies.map((currency) => (
                     <option key={currency.code} value={currency.code}>{currency.name}</option>
                 ))}
