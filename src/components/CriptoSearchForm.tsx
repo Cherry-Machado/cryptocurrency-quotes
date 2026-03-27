@@ -17,7 +17,7 @@ export default function CriptoSearchForm() {
                 ))}
             </select>
       </div>
-
+               
       <div className="field">
             <label htmlFor="criptocurrency">Cryptocurrency</label>
             <select 
