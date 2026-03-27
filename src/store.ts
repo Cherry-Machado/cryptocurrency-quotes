@@ -1,17 +1,19 @@
 import { create } from 'zustand'
-import axios from 'axios'
-import { CryptoCurrenciesResponseSchema } from './schema/crypto-schema'
+import { devtools } from 'zustand/middleware'
+import type { CryptoCurrency } from './types'
+import { getCryptos } from './services/CryptoService'
 
-
-async function getCryptos() {
-    const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD'
-    const {data: {Data}} = await axios(url)
-    const result = CryptoCurrenciesResponseSchema.safeParse(Data)
-    console.log(result)
+type CriptoStore = {
+    cryptocurrencies: CryptoCurrency[]
+    fetchCryptos: () => Promise<void>
 }
 
-export const useCryptoStore = create(() => ({
-    fetchCryptos: () => {
-        getCryptos()
+export const useCryptoStore = create<CriptoStore>()(devtools((set) => ({
+    cryptocurrencies: [],
+    fetchCryptos: async () => {
+        const cryptocurrencies = await getCryptos()
+        set(() => ({ 
+            cryptocurrencies 
+        }))
     }
-}))
+})))
