@@ -1,7 +1,10 @@
+import { useCryptoStore } from "../store"       
 import { currencies } from "../data";
 
 // A form component for searching cryptocurrency quotes based on selected currency and cryptocurrency.
 export default function CriptoSearchForm() {
+  const crytocurrencies =  useCryptoStore((state) => state.cryptocurrencies)
+
   return (
     <form className="form">
         <div className="field">
@@ -17,7 +20,7 @@ export default function CriptoSearchForm() {
                 ))}
             </select>
       </div>
-
+               
       <div className="field">
             <label htmlFor="criptocurrency">Cryptocurrency</label>
             <select 
@@ -25,6 +28,12 @@ export default function CriptoSearchForm() {
                 name="criptocurrency" 
             >
                 <option value="">-- Choose a Cryptocurrency --</option>
+                {crytocurrencies.map( crypto => (
+                    <option
+                        key={crypto.CoinInfo.FullName}
+                        value={crypto.CoinInfo.Name}
+                    >{crypto.CoinInfo.FullName}</option>
+                ))}
             </select>
       </div>
 
