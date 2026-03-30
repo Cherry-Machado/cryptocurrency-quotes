@@ -1,11 +1,12 @@
 import { z } from "zod";
 
-// A Zod schema for validating currency objects, which consist of a code and a name.
+// Zod schema for validating a currency object from the local currency list.
 export const CurrencySchema = z.object({
   code: z.string(),
   name: z.string()
 });
 
+// Zod schema for validating a single cryptocurrency item returned by the API.
 export const CryptoCurrencyResponseSchema = z.object({
   CoinInfo: z.object({
     Name: z.string(),
@@ -13,5 +14,5 @@ export const CryptoCurrencyResponseSchema = z.object({
   })
 })
 
-// Take that schema above and conver it to an array.
+// Array schema for the collection of validated cryptocurrency items.
 export const CryptoCurrenciesResponseSchema = z.array(CryptoCurrencyResponseSchema)

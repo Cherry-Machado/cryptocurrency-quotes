@@ -7,6 +7,7 @@ function App() {
 
   const fetchCryptos = useCryptoStore((state) => state.fetchCryptos)
 
+  // Load the cryptocurrency list once when the app first mounts.
   useEffect(() => {
     fetchCryptos()
   }, [])

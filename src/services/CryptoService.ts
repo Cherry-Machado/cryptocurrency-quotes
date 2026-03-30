@@ -1,23 +1,29 @@
 import axios from 'axios'
 import { CryptoCurrenciesResponseSchema } from '../schema/crypto-schema'
 
+// Fetch the top 20 cryptocurrencies by market cap in USD and validate the returned data.
+// This service exists as the single API abstraction layer for loading cryptocurrency metadata.
 export async function getCryptos() {
     const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD'
+
+    // Use axios to fetch the raw API payload.
     try {
         const { data: { Data }} = await axios(url)
+        // Validate the `Data` array against the Zod schema before exposing it to the app.
         const result = CryptoCurrenciesResponseSchema.safeParse(Data)
+
         if (result.success) {
-             console.log(result.data)
+            // Validated data is safe to return and render.
+            console.log(result.data)
             return result.data
-           
         } else {
-            //Record the Zod error to understand why the validation failed
+            // Log validation details to make debugging schema mismatches easier.
             console.error("Zod validation failed for cryptocurrencies:", result.error);
-            return [] // Return an empty array or handle the error as appropriate
+            return [] // Use an empty array fallback to keep the app stable.
         }
     } catch (error) {
-        // Log any errors in the API call
+        // Log low-level network or request errors separately from validation failures.
         console.error("Error fetching cryptocurrencies from API:", error);
-        return [] // Returns an empty array as fallback
+        return [] // Return an empty array if the fetch fails.
     }
 }

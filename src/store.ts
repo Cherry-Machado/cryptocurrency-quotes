@@ -8,12 +8,16 @@ type CriptoStore = {
     fetchCryptos: () => Promise<void>
 }
 
+// Zustand store that keeps the current cryptocurrency list and exposes a method to refresh it.
 export const useCryptoStore = create<CriptoStore>()(devtools((set) => ({
     cryptocurrencies: [],
     fetchCryptos: async () => {
-        const cryptocurrencies = await getCryptos()
-        set(() => ({ 
-            cryptocurrencies 
-        }))
+      // Request the latest cryptocurrencies from the API service.
+      const cryptocurrencies = await getCryptos()
+      // Update the global store with the newest data.
+      set(() => ({
+        cryptocurrencies
+      }))
     }
-})))
+  }))
+)
