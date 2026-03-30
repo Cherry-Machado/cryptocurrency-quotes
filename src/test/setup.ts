@@ -1,0 +1,2 @@
+// This setup file is used to configure the testing environment for Jest. It imports the '@testing-library/jest-dom' library, which provides custom matchers for asserting on DOM nodes, allowing for more readable and expressive tests when working with the DOM in React components. By including this setup file in the Jest configuration, these matchers will be available globally in all test files without needing to import them individually.
+import '@testing-library/jest-dom'
