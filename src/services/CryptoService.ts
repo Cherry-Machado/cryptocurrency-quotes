@@ -30,6 +30,12 @@ export async function getCryptos() {
 }
 
 export async function fetchCurrentCryptoPrice(pair: Pair) {
-    // Placeholder for future method to fetch quote data based on selected pair.
-    console.log('Fetching price for pair:', pair)
+    // Method to fetch quote data based on selected pair.
+    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${pair.criptocurrency}&tsyms=${pair.currency}`
+    try {
+        const { data: {DISPLAY} } = await axios(url)
+        console.log('Current price data:', DISPLAY[pair.criptocurrency][pair.currency])
+    } catch (error) {
+        console.error("Error fetching current crypto price:", error);
+    }
 }
