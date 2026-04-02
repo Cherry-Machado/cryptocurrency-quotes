@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { CryptoCurrenciesResponseSchema } from '../schema/crypto-schema'
+import type { Pair } from '../types'
 
 // Fetch the top 20 cryptocurrencies by market cap in USD and validate the returned data.
 // This service exists as the single API abstraction layer for loading cryptocurrency metadata.
@@ -26,4 +27,9 @@ export async function getCryptos() {
         console.error("Error fetching cryptocurrencies from API:", error);
         return [] // Return an empty array if the fetch fails.
     }
+}
+
+export async function fetchCurrentCryptoPrice(pair: Pair) {
+    // Placeholder for future method to fetch quote data based on selected pair.
+    console.log('Fetching price for pair:', pair)
 }

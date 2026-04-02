@@ -1,11 +1,12 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import type { CryptoCurrency } from './types'
-import { getCryptos } from './services/CryptoService'
+import type { CryptoCurrency, Pair } from './types'
+import { getCryptos, fetchCurrentCryptoPrice } from './services/CryptoService'
 
 type CriptoStore = {
     cryptocurrencies: CryptoCurrency[]
     fetchCryptos: () => Promise<void>
+    fetchData: (pair: Pair) => Promise<void>
 }
 
 // Zustand store that keeps the current cryptocurrency list and exposes a method to refresh it.
@@ -18,6 +19,9 @@ export const useCryptoStore = create<CriptoStore>()(devtools((set) => ({
       set(() => ({
         cryptocurrencies
       }))
+    },
+    fetchData: async (pair) => {
+      await fetchCurrentCryptoPrice(pair)
     }
   }))
 )

@@ -12,13 +12,15 @@ export default function CriptoSearchForm() {
   // Pull the current cryptocurrency list from Zustand state.
   const cryptocurrencies = useCryptoStore((state) => state.cryptocurrencies)
 
+  const fetchData = useCryptoStore((state) => state.fetchData)
+
   const [pair, setPair] = useState<Pair>({
     currency: '',
     criptocurrency: ''
   })
 
   const [error, setError] = useState<string>('')
-  
+
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setPair({ ...pair, [e.target.name]: e.target.value });
   }
@@ -31,6 +33,7 @@ export default function CriptoSearchForm() {
     }
     setError('')
     // Consult the API with the selected currency and cryptocurrency pair to fetch the quote data. 
+    fetchData(pair)
   }
 
   return (
