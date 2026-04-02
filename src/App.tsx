@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import CriptoSearchForm from "./components/CriptoSearchForm"
 import { useCryptoStore } from "./store"
+import CryptoPriceDisplay from "./components/CryptoPriceDisplay"
 
 // The main application component that renders the cryptocurrency quote search form and the overall layout of the app.
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
         <div className="content">
           <CriptoSearchForm />
+          <CryptoPriceDisplay />
         </div>
       </div>
       

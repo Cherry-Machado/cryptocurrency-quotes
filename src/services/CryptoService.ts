@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { CryptoCurrenciesResponseSchema } from '../schema/crypto-schema'
+import { CryptoCurrenciesResponseSchema, CryptoPriceSchema } from '../schema/crypto-schema'
+import type { Pair } from '../types'
 
 // Fetch the top 20 cryptocurrencies by market cap in USD and validate the returned data.
 // This service exists as the single API abstraction layer for loading cryptocurrency metadata.
@@ -25,5 +26,23 @@ export async function getCryptos() {
         // Log low-level network or request errors separately from validation failures.
         console.error("Error fetching cryptocurrencies from API:", error);
         return [] // Return an empty array if the fetch fails.
+    }
+}
+
+export async function fetchCurrentCryptoPrice(pair: Pair) {
+    // Method to fetch quote data based on selected pair.
+    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${pair.criptocurrency}&tsyms=${pair.currency}`
+    try {
+        const { data: {DISPLAY} } = await axios(url)
+        const result = CryptoPriceSchema.safeParse(DISPLAY[pair.criptocurrency][pair.currency])
+
+        if (result.success) {
+            /* console.log(result.data) */
+            return result.data
+        } else {
+            console.error("Zod validation failed for current crypto price data:", result.error);
+        }
+    } catch (error) {
+        console.error("Error fetching current crypto price data:", error);
     }
 }

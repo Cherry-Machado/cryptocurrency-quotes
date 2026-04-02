@@ -16,3 +16,17 @@ export const CryptoCurrencyResponseSchema = z.object({
 
 // Array schema for the collection of validated cryptocurrency items.
 export const CryptoCurrenciesResponseSchema = z.array(CryptoCurrencyResponseSchema)
+
+export const PairSchema = z.object({
+  currency: z.string(),
+  criptocurrency: z.string()
+})
+
+export const CryptoPriceSchema = z.object({
+  IMAGEURL: z.string(),
+  PRICE: z.string(),
+  HIGHDAY: z.string(),
+  LOWDAY: z.string(),
+  CHANGEPCT24HOUR: z.string(),
+  LASTUPDATE: z.string()
+})
