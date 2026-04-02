@@ -2,6 +2,7 @@ import { useCryptoStore } from "../store"
 import { currencies } from "../data";
 import { useState, type ChangeEvent } from "react";
 import type { Pair } from "../types";
+import ErrorMessage from "./ErrorMessage";
 
 // CriptoSearchForm renders the quote search form for choosing a fiat currency
 // and a cryptocurrency. It reads available crypto data from the global store
@@ -16,12 +17,27 @@ export default function CriptoSearchForm() {
     criptocurrency: ''
   })
 
+  const [error, setError] = useState<string>('')
+  
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setPair({ ...pair, [e.target.name]: e.target.value });
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if(Object.values(pair).includes('')) {
+      setError('All fields are required')
+      return
+    }
+    setError('')
+    // Consult the API with the selected currency and cryptocurrency pair to fetch the quote data. 
+  }
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
+
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+
       {/* Currency selector section */}
       <div className="field">
         <label htmlFor="currency">Currency</label>
@@ -29,6 +45,7 @@ export default function CriptoSearchForm() {
           id="currency" 
           name="currency"
           onChange={handleChange}
+          value={pair.currency}
         >
           <option value="">-- Choose a Currency --</option>
           {/* Render static currency options from the local data file. */}
@@ -47,6 +64,7 @@ export default function CriptoSearchForm() {
           id="criptocurrency" 
           name="criptocurrency"
           onChange={handleChange}
+          value={pair.criptocurrency}
         >
           <option value="">-- Choose a Cryptocurrency --</option>
           {/* Render cryptocurrency options fetched from the API via Zustand. */}
