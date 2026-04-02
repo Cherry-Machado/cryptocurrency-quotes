@@ -19,7 +19,7 @@ export default function CriptoSearchForm() {
     criptocurrency: ''
   })
 
-  const [error, setError] = useState<string>('')
+  const [error, setError] = useState('')
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setPair({ ...pair, [e.target.name]: e.target.value });
