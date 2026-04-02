@@ -37,6 +37,7 @@ export async function fetchCurrentCryptoPrice(pair: Pair) {
         const result = CryptoPriceSchema.safeParse(DISPLAY[pair.criptocurrency][pair.currency])
 
         if (result.success) {
+            /* console.log(result.data) */
             return result.data
         } else {
             console.error("Zod validation failed for current crypto price data:", result.error);
