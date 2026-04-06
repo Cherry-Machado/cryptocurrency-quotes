@@ -1,41 +1,64 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import CriptoSearchForm from '../CriptoSearchForm'
 import { useCryptoStore } from '../../store'
-import userEvent from '@testing-library/user-event'
-/* Mock the store to control its behavior during tests */
+
+// Mock Zustand store for form rendering and submission tests.
 vi.mock('../../store', () => ({
   useCryptoStore: vi.fn()
 }))
-/* Test suite for the CriptoSearchForm component, which allows users to select a currency and a cryptocurrency. */
+
 describe('CriptoSearchForm', () => {
+  const fetchData = vi.fn()
+
   beforeEach(() => {
-    (useCryptoStore as any).mockImplementation((selector: any) => 
+    fetchData.mockReset()
+
+    ;(useCryptoStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector: any) =>
       selector({
         cryptocurrencies: [
           { CoinInfo: { Name: 'BTC', FullName: 'Bitcoin' } },
           { CoinInfo: { Name: 'ETH', FullName: 'Ethereum' } }
-        ]
+        ],
+        fetchData
       })
     )
   })
-/* Test to verify that the form fields for selecting currency and cryptocurrency are rendered correctly. */
-  it('renders form fields', () => {
+
+  it('renders both select fields', () => {
     render(<CriptoSearchForm />)
+
+    // Ensure the currency and cryptocurrency dropdowns are rendered.
     expect(screen.getByLabelText('Currency')).toBeInTheDocument()
     expect(screen.getByLabelText('Cryptocurrency')).toBeInTheDocument()
   })
-  /* Test to verify that users can select options from the currency and cryptocurrency dropdowns, and that the selected values are updated accordingly. */
-  it('allows selecting currency and crypto', async () => {
-    render(<CriptoSearchForm />)
+
+  it('shows a validation message when the form is submitted without both selections', async () => {
     const user = userEvent.setup()
-    /* Get the select elements for currency and cryptocurrency using their labels, then simulate user interactions to select options and verify that the selected values are updated correctly. */
-    const currencySelect = screen.getByLabelText('Currency')
-    const cryptoSelect = screen.getByLabelText('Cryptocurrency')
-    /* Simulate user selecting 'USD' from the currency dropdown and 'BTC' from the cryptocurrency dropdown, then assert that the select elements have the expected values after the selections. */
-    await user.selectOptions(currencySelect, 'USD')
-    await user.selectOptions(cryptoSelect, 'BTC')
-    /* Assert that the currency select has the value 'USD' and the cryptocurrency select has the value 'BTC', confirming that the selections were made successfully. */
-    expect(currencySelect).toHaveValue('USD')
-    expect(cryptoSelect).toHaveValue('BTC')
+
+    render(<CriptoSearchForm />)
+
+    // Submit the form with default empty values and expect validation feedback.
+    await user.click(screen.getByRole('button', { name: /quote search/i }))
+
+    expect(screen.getByText('All fields are required')).toBeInTheDocument()
+    expect(fetchData).not.toHaveBeenCalled()
+  })
+
+  it('submits the selected currency pair', async () => {
+    const user = userEvent.setup()
+
+    render(<CriptoSearchForm />)
+
+    await user.selectOptions(screen.getByLabelText('Currency'), 'USD')
+    await user.selectOptions(screen.getByLabelText('Cryptocurrency'), 'BTC')
+    await user.click(screen.getByRole('button', { name: /quote search/i }))
+
+    // Verify fetchData was called with the chosen currency pair.
+    expect(fetchData).toHaveBeenCalledWith({
+      currency: 'USD',
+      criptocurrency: 'BTC'
+    })
+    expect(screen.queryByText('All fields are required')).not.toBeInTheDocument()
   })
 })
