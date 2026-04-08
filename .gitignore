@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Tests
+src/__tests__/*
+src/components/__tests__/*
+src/services/__tests__/*
