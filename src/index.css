@@ -84,6 +84,7 @@ body::before {
 .content {
     margin-top: 2rem;
     padding: 6rem 2rem;
+    position: relative;
     background-color: var(--panel-bg);
     backdrop-filter: blur(12px);
     border-radius: 1rem;
@@ -125,6 +126,25 @@ body::before {
 
 .form [type="submit"]:hover {
     background-color: #47c591;
+}
+
+.btn-reset {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+    border-radius: 0.5rem;
+    padding: 0.4rem 1.2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+.btn-reset:hover {
+    background-color: var(--text-main);
+    color: var(--panel-bg);
 }
 
 .result-wrapper {

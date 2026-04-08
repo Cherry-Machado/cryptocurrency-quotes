@@ -12,6 +12,7 @@ const THEME_STORAGE_KEY = "crypto-quotes-theme"
 // The main application component that renders the cryptocurrency quote search form and the overall layout of the app.
 function App() {
   const fetchCryptos = useCryptoStore((state) => state.fetchCryptos)
+  const result = useCryptoStore((state) => state.result)
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") {
       return "light"
@@ -83,6 +84,15 @@ function App() {
         </h1>
 
         <div className="content">
+          {result.PRICE && (
+            <button
+              type="button"
+              className="btn-reset"
+              onClick={() => window.location.reload()}
+            >
+              Clear Form
+            </button>
+          )}
           <CriptoSearchForm />
           <CryptoPriceDisplay />
         </div>
