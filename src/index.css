@@ -54,20 +54,24 @@ body::before {
 #root {
     position: relative;
     min-height: 100vh;
-    padding: 3rem 1.5rem 5rem;
+    padding: 3rem 1.5rem 0rem;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 .container {
     max-width: 60rem;
     width: 95%;
     margin: 0 auto;
+    flex-grow: 1;
 }
 
 .app-title {
     font-size: 3.8rem;
     color: var(--white);
-    margin-top: 5rem;
+    margin-top: 1rem;
     line-height: .8;
 }
 
@@ -78,8 +82,9 @@ body::before {
 }
 
 .content {
-    margin-top: 5rem;
+    margin-top: 2rem;
     padding: 6rem 2rem;
+    position: relative;
     background-color: var(--panel-bg);
     backdrop-filter: blur(12px);
     border-radius: 1rem;
@@ -121,6 +126,25 @@ body::before {
 
 .form [type="submit"]:hover {
     background-color: #47c591;
+}
+
+.btn-reset {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+    border-radius: 0.5rem;
+    padding: 0.4rem 1.2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+.btn-reset:hover {
+    background-color: var(--text-main);
+    color: var(--panel-bg);
 }
 
 .result-wrapper {
@@ -262,7 +286,7 @@ body::before {
 
 @media (max-width: 768px) {
     #root {
-        padding-top: 10rem;
+        padding-top: 8rem;
     }
 
     .theme-switch__track {
@@ -270,6 +294,24 @@ body::before {
     }
 
     .content {
+        margin-bottom: 1rem;
         padding: 4rem 1.8rem;
     }
+
+    .app-title {
+        font-size: 3rem;
+    }
+
+    .app-title span {
+        font-size: 3.4rem;
+    }
+}
+
+.footer {
+    background-color: var(--primary);
+    color: var(--black);
+    text-align: center;
+    padding: 2rem;
+    margin-top: auto;
+    font-weight: 600;
 }
