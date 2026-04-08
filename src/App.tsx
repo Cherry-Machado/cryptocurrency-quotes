@@ -87,6 +87,9 @@ function App() {
           <CryptoPriceDisplay />
         </div>
       </div>
+      <footer className="footer">
+          <p>&copy; {new Date().getFullYear()} Cryptocurrency Quotes. All rights reserved.</p>
+      </footer>
     </>
   )
 }
