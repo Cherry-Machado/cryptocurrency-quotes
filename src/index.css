@@ -83,6 +83,7 @@ body::before {
 
 .content {
     margin-top: 2rem;
+    margin-bottom: 1rem;
     padding: 6rem 2rem;
     position: relative;
     background-color: var(--panel-bg);
